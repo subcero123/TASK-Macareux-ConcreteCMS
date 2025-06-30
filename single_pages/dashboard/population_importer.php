@@ -15,7 +15,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
     
     <div class="row">
         <div class="col-md-12">
-            <h2><?= t('Population Data Overview') ?></h2>
+            <h2><?= t('Population Dta Overview') ?></h2>
         </div>
     </div>
     <div class="row mb-4">

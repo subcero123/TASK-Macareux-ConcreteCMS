@@ -80,11 +80,13 @@ packages/population_importer/
 
 ## Database Schema
 
-The package creates a `population_data` table with the following structure:
+The package creates a `population_data` table with the following structure: 
+
+Note: Structure can be found in Population.php
 
 ```sql
 CREATE TABLE population_data (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     prefecture VARCHAR(50) NOT NULL,
     year INT NOT NULL,
     population BIGINT NOT NULL,
@@ -99,13 +101,13 @@ CREATE TABLE population_data (
 
 ### Schema Details
 
-- **id**: Primary key, unsigned integer with auto-increment
-- **prefecture**: Prefecture name (up to 50 characters)
-- **year**: Year of the population data
-- **population**: Population count (bigint to handle large numbers)
-- **prefecture_code**: Optional prefecture code (up to 10 characters)
-- **created_at**: Timestamp when record was created
-- **updated_at**: Timestamp when record was last updated
+- **id**: Primary key, integer with auto-increment (generated automatically by Doctrine)
+- **prefecture**: Prefecture name (up to 50 characters, not null)
+- **year**: Year of the population data (integer, not null)
+- **population**: Population count (bigint to handle large numbers, not null)
+- **prefecture_code**: Optional prefecture code (up to 10 characters, nullable)
+- **created_at**: Timestamp when record was created (datetime, not null, auto-set in constructor)
+- **updated_at**: Timestamp when record was last updated (datetime, not null, auto-updated on changes)
 
 ### Indexes
 
