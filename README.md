@@ -1,7 +1,5 @@
 # Population Importer - ConcreteCMS Package
 
-A complete ConcreteCMS package for importing and managing Japanese prefecture population data from e-Stat Japan. Features CSV import with automatic encoding detection, dashboard management, public search interface, and JSON API access.
-
 ## Installation
 
 ### Requirements
@@ -26,10 +24,8 @@ A complete ConcreteCMS package for importing and managing Japanese prefecture po
 ## Features
 
 - **CSV Import**: Automatic Shift-JIS to UTF-8 conversion for Japanese e-Stat data
-- **Prefecture Matrix Support**: Handles e-Stat matrix format (prefectures as rows, years as columns)
 - **Dashboard Management**: Import management and statistics overview
 - **Public Search**: Prefecture and year-based population search with AJAX statistics
-- **JSON API**: Programmatic access to population data
 - **Data Validation**: Automatic validation and duplicate prevention
 
 ## Usage
@@ -47,21 +43,6 @@ A complete ConcreteCMS package for importing and managing Japanese prefecture po
    - Click "Upload and Import"
    - View import statistics and recent imports
 
-### Public Search
-
-- Visit `/population-search` page
-- Select prefecture and year
-- View population data and historical statistics
-
-### API Access
-
-```bash
-# Get population data
-GET /population-search/api?prefecture=Tokyo&year=2020
-
-# Get prefecture statistics
-GET /population-search/prefecture_stats?prefecture=Tokyo
-```
 
 ## File Structure
 
@@ -74,7 +55,6 @@ packages/population_importer/
 │   ├── Entity/
 │   │   └── Population.php                          # Doctrine entity
 │   ├── EntityManagerProvider.php                   # Doctrine configuration
-│   ├── PopulationQueries.php                       # Query helper (unused)
 │   └── SchemaManager.php                           # Database schema management
 ├── controllers/
 │   └── single_page/
@@ -100,22 +80,6 @@ packages/population_importer/
 - **Schema Manager**: `src/SchemaManager.php` - Database schema creation and management
 - **Controllers**: Handle dashboard and public page logic
 - **Views**: Single page templates for dashboard and public interface
-
-### CSV Import Features
-
-- **Encoding Detection**: Automatic conversion from Shift-JIS to UTF-8
-- **Matrix Format**: Supports e-Stat prefecture matrix format
-- **Japanese Prefecture Mapping**: Converts Japanese prefecture names to English
-- **Data Validation**: Year range validation and population value sanitization
-- **Batch Processing**: Memory-efficient processing for large datasets
-- **Duplicate Prevention**: Automatic detection and update of existing records
-
-### Database Operations
-
-- Direct Doctrine EntityManager usage for all database operations
-- Repository pattern for data access
-- Query builders for complex queries
-- Automatic timestamp management
 
 ## Database Schema
 
@@ -151,27 +115,3 @@ CREATE TABLE population_data (
 - **Primary Key**: `id`
 - **Composite Index**: `idx_prefecture_year` on (prefecture, year) for efficient searches
 - **Single Indexes**: `idx_prefecture` and `idx_year` for individual column queries
-
-## Development Notes
-
-### ConcreteCMS 9.x Compatibility
-
-- Removed `parent::__construct()` calls from controllers for compatibility
-- Uses proper entity manager injection patterns
-- Follows ConcreteCMS namespace conventions
-
-### Code Organization
-
-- `PopulationQueries.php` is included but not currently used by controllers
-- All database operations use direct Doctrine EntityManager and repository methods
-- Controllers handle both web interface and API endpoints
-
-### Future Enhancements
-
-- The `PopulationQueries.php` helper class can be utilized for complex analytical queries
-- Additional API endpoints can be added for statistical analysis
-- Export functionality for processed data
-
-## License
-
-This package is provided as-is for educational and development purposes.
