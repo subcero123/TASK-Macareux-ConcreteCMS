@@ -54,8 +54,6 @@ packages/population_importer/
 ├── src/
 │   ├── Entity/
 │   │   └── Population.php                          # Doctrine entity
-│   ├── EntityManagerProvider.php                   # Doctrine configuration
-│   └── SchemaManager.php                           # Database schema management
 ├── controllers/
 │   └── single_page/
 │       ├── dashboard/
@@ -77,7 +75,6 @@ packages/population_importer/
 
 - **Main Controller**: `controller.php` - Handles package installation, entity registration, and page creation
 - **Entity**: `src/Entity/Population.php` - Doctrine ORM entity for population data
-- **Schema Manager**: `src/SchemaManager.php` - Database schema creation and management
 - **Controllers**: Handle dashboard and public page logic
 - **Views**: Single page templates for dashboard and public interface
 
